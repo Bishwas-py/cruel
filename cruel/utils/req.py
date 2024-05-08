@@ -26,11 +26,12 @@ class Session(requests.Session):
             method,
             url: str = '',
             self_: 'Session' = None,
-            use_scraper_api: bool = True,
             *args,
             **kwargs,
     ) -> Response:
-        if (use_scraper_api or self_.USE_SCRAPER_API) and not self_.SCRAPER_API_KEY:
+        if self_ is None:
+            self_ = self
+        if self_.USE_SCRAPER_API and not self_.SCRAPER_API_KEY:
             raise ValueError(
                 f"No Scraper API key found, please get one from {SCRAPER_API_REF}, and "
                 f"use `set_scraper_api_key(` to set it.")
