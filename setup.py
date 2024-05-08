@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="cruel",
-    version="0.0.1",
+    version="0.0.11",
     description="Cruel - Scrape everything or anything from the web.",
     long_description=long_description,
     long_description_content_type="text/markdown",

@@ -31,6 +31,7 @@ class Session(requests.Session):
     ) -> Response:
         if self_ is None:
             self_ = self
+
         if self_.USE_SCRAPER_API and not self_.SCRAPER_API_KEY:
             raise ValueError(
                 f"No Scraper API key found, please get one from {SCRAPER_API_REF}, and "
@@ -44,7 +45,7 @@ class Session(requests.Session):
                 "session_number": self_.session_number,
             }
             url = SCRAPER_API_URL
-        response = super().request(method, url, *args, **kwargs)
+        response: Response = super().request(method, url, *args, **kwargs)
         response.__class__ = Response
         response.set_soup()
         return response
